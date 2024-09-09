@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Subredes</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --background-color: #ecf0f1;
+            --text-color: #34495e;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.7rem 1rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #results {
+            margin-top: 1.5rem;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            padding: 1rem;
+        }
+        #results p {
+            margin: 0.5rem 0;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        .result-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Subredes</h1>
+        <form id="subnetForm">
+            <div class="form-group">
+                <label for="ipInput">Ingresa una IP con o sin máscara (ej. 172.20.69.0/24 o 172.20.69.0):</label>
+                <input type="text" id="ipInput" placeholder="172.20.69.0/24" required>
+            </div>
+            <button type="button" onclick="calculate()">Calcular</button>
+        </form>
+        <div id="results"></div>
+    </div>
+
+    <script>
+const _0x3b82d8=_0x1ac0;(function(_0x3549fa,_0x5bddba){const _0x3dbde1=_0x1ac0,_0x170ec6=_0x3549fa();while(!![]){try{const _0x63cbc5=-parseInt(_0x3dbde1(0xeb))/0x1*(-parseInt(_0x3dbde1(0xe2))/0x2)+parseInt(_0x3dbde1(0x114))/0x3+-parseInt(_0x3dbde1(0xf5))/0x4*(parseInt(_0x3dbde1(0xf2))/0x5)+-parseInt(_0x3dbde1(0xed))/0x6*(parseInt(_0x3dbde1(0xf8))/0x7)+-parseInt(_0x3dbde1(0x107))/0x8*(parseInt(_0x3dbde1(0x104))/0x9)+-parseInt(_0x3dbde1(0xec))/0xa*(-parseInt(_0x3dbde1(0xfb))/0xb)+parseInt(_0x3dbde1(0x110))/0xc;if(_0x63cbc5===_0x5bddba)break;else _0x170ec6['push'](_0x170ec6['shift']());}catch(_0x947d23){_0x170ec6['push'](_0x170ec6['shift']());}}}(_0x973b,0xd2536));const masks=[{'cidr':0x1e,'mask':_0x3b82d8(0xef),'hosts':0x2},{'cidr':0x1d,'mask':_0x3b82d8(0xe1),'hosts':0x6},{'cidr':0x1c,'mask':'255.255.255.240','hosts':0xe},{'cidr':0x1b,'mask':_0x3b82d8(0x108),'hosts':0x1e},{'cidr':0x1a,'mask':_0x3b82d8(0xfa),'hosts':0x3e},{'cidr':0x19,'mask':'255.255.255.128','hosts':0x7e},{'cidr':0x18,'mask':_0x3b82d8(0xe9),'hosts':0xfe},{'cidr':0x17,'mask':_0x3b82d8(0xe8),'hosts':0x1fe},{'cidr':0x16,'mask':_0x3b82d8(0xf6),'hosts':0x3fe},{'cidr':0x15,'mask':_0x3b82d8(0xf7),'hosts':0x7fe},{'cidr':0x14,'mask':_0x3b82d8(0xe5),'hosts':0xffe},{'cidr':0x13,'mask':_0x3b82d8(0x10c),'hosts':0x1ffe},{'cidr':0x12,'mask':_0x3b82d8(0xfe),'hosts':0x3ffe},{'cidr':0x11,'mask':_0x3b82d8(0xf3),'hosts':0x7ffe},{'cidr':0x10,'mask':'255.255.0.0','hosts':0xfffe},{'cidr':0xf,'mask':_0x3b82d8(0xe3),'hosts':0x1fffe},{'cidr':0xe,'mask':_0x3b82d8(0x10a),'hosts':0x3fffe},{'cidr':0xd,'mask':_0x3b82d8(0xe6),'hosts':0x7fffe},{'cidr':0xc,'mask':_0x3b82d8(0xf0),'hosts':0xffffe},{'cidr':0xb,'mask':_0x3b82d8(0xf1),'hosts':0x1ffffe},{'cidr':0xa,'mask':_0x3b82d8(0x112),'hosts':0x3ffffe},{'cidr':0x9,'mask':_0x3b82d8(0x105),'hosts':0x7ffffe},{'cidr':0x8,'mask':_0x3b82d8(0xdd),'hosts':0xfffffe}];function ipToNumber(_0x26ee57){return _0x26ee57['split']('.')['reduce']((_0x261879,_0x1a1303)=>(_0x261879<<0x8)+parseInt(_0x1a1303),0x0)>>>0x0;}function numberToIp(_0xf185ac){return[_0xf185ac>>>0x18,_0xf185ac>>0x10&0xff,_0xf185ac>>0x8&0xff,_0xf185ac&0xff]['join']('.');}function cidrToMask(_0x3adc75){const _0x15c9dd=0xffffffff<<0x20-_0x3adc75>>>0x0;return numberToIp(_0x15c9dd);}function _0x973b(){const _0x3da360=['hosts','255.255.224.0','Primera\x20dirección\x20usable','\x20(/','Clase\x20de\x20red','8809692KzIYxl','Dirección\x20de\x20red','255.192.0.0','value','580329CgdeaL','ipInput','255.0.0.0','255.255.0.0','</span></div>','Última\x20dirección\x20usable','255.255.255.248','2gciaeA','255.254.0.0','cidr','255.255.240.0','255.248.0.0','<div\x20class=\x22result-item\x22><span\x20class=\x22result-label\x22>','255.255.254.0','255.255.255.0','Dirección\x20de\x20broadcast','1355614TSziXJ','13570ojpQuF','90HTAYuO','find','255.255.255.252','255.240.0.0','255.224.0.0','491615uvKgqq','255.255.128.0','mask','52pFYOjh','255.255.252.0','255.255.248.0','23044kKKJjR','trim','255.255.255.192','418gVouQB','Máscara\x20de\x20subred','map','255.255.192.0',':</span>\x20<span>','results','Desconocida','join','split','117CGIKbk','255.128.0.0','getElementById','89656thZDAi','255.255.255.224','label','255.252.0.0'];_0x973b=function(){return _0x3da360;};return _0x973b();}function _0x1ac0(_0x412c9f,_0x53049c){const _0x973b52=_0x973b();return _0x1ac0=function(_0x1ac09c,_0x1bb8f5){_0x1ac09c=_0x1ac09c-0xdd;let _0x2f13c2=_0x973b52[_0x1ac09c];return _0x2f13c2;},_0x1ac0(_0x412c9f,_0x53049c);}function getNetworkClass(_0x5c0ee8){const _0x32368a=_0x3b82d8,_0x135ac7=parseInt(_0x5c0ee8[_0x32368a(0x103)]('.')[0x0]);if(_0x135ac7>=0x1&&_0x135ac7<=0x7e)return'A';if(_0x135ac7>=0x80&&_0x135ac7<=0xbf)return'B';if(_0x135ac7>=0xc0&&_0x135ac7<=0xdf)return'C';if(_0x135ac7>=0xe0&&_0x135ac7<=0xef)return'D';if(_0x135ac7>=0xf0&&_0x135ac7<=0xff)return'E';return _0x32368a(0x101);}function getDefaultMaskForClass(_0x37cd83){const _0x654f50=_0x3b82d8;switch(_0x37cd83){case'A':return{'cidr':0x8,'mask':'255.0.0.0'};case'B':return{'cidr':0x10,'mask':_0x654f50(0xde)};case'C':return{'cidr':0x18,'mask':'255.255.255.0'};default:return{'cidr':0x18,'mask':_0x654f50(0xe9)};}}function calculate(){const _0x1a5657=_0x3b82d8,_0x74e2cb=document['getElementById'](_0x1a5657(0x115))['value'][_0x1a5657(0xf9)]();let [_0x35655d,_0x3ec1ef]=_0x74e2cb[_0x1a5657(0x103)]('/'),_0x20a5d9=getNetworkClass(_0x35655d),_0x3c5179,_0x1e3d22;if(!_0x3ec1ef){const _0x262321=getDefaultMaskForClass(_0x20a5d9);_0x3ec1ef=_0x262321[_0x1a5657(0xe4)],_0x3c5179=_0x262321[_0x1a5657(0xf4)],_0x1e3d22=masks['find'](_0xedab64=>_0xedab64['cidr']===_0x3ec1ef)[_0x1a5657(0x10b)];}else _0x3ec1ef=parseInt(_0x3ec1ef),_0x3c5179=cidrToMask(_0x3ec1ef),_0x1e3d22=masks[_0x1a5657(0xee)](_0x2e8e6e=>_0x2e8e6e[_0x1a5657(0xe4)]===_0x3ec1ef)[_0x1a5657(0x10b)];const _0x2fe05b=ipToNumber(_0x35655d),_0x178eb5=ipToNumber(_0x3c5179),_0x90d904=numberToIp(_0x2fe05b&_0x178eb5),_0x24e649=numberToIp(_0x2fe05b|~_0x178eb5>>>0x0),_0x5dc54c=numberToIp(ipToNumber(_0x90d904)+0x1),_0x1a5f06=numberToIp(ipToNumber(_0x24e649)-0x1),_0x550390=[{'label':_0x1a5657(0x111),'value':_0x90d904},{'label':_0x1a5657(0xfc),'value':_0x3c5179+_0x1a5657(0x10e)+_0x3ec1ef+')'},{'label':_0x1a5657(0xea),'value':_0x24e649},{'label':'Número\x20de\x20hosts','value':_0x1e3d22},{'label':_0x1a5657(0x10d),'value':_0x5dc54c},{'label':_0x1a5657(0xe0),'value':_0x1a5f06},{'label':_0x1a5657(0x10f),'value':_0x20a5d9}];document[_0x1a5657(0x106)](_0x1a5657(0x100))['innerHTML']=_0x550390[_0x1a5657(0xfd)](_0x1524d5=>_0x1a5657(0xe7)+_0x1524d5[_0x1a5657(0x109)]+_0x1a5657(0xff)+_0x1524d5[_0x1a5657(0x113)]+_0x1a5657(0xdf))[_0x1a5657(0x102)]('');}
+    </script>
+</body>
+</html>

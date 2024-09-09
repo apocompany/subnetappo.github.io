@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subnet Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Calculadora de Subredes</h1>
+
+    <!-- Sección de indicaciones -->
+    <div id="instructions">
+           <h2>Indicaciones</h2>
+        <ul>
+            <li>Primero, establece la red inicial.</li>
+            <li>Añade las subredes deseadas, comenzando por la que tenga mayor cantidad de hosts hacia la menor.</li>
+            <li>Si no sigues el orden de mayor a menor cantidad de hosts, la generación de la red será incorrecta.</li>
+            <li>Una vez añadidas todas las subredes, añade las WANs correspondientes.</li>
+            <li>Después de configurar las WANs y subredes, procede a agregar los routers.</li>
+            <li>Finalmente, una vez completados todos los pasos, genera la configuración en Cisco Packet Tracer.</li>
+        </ul>
+    </div>
+    <button onclick="window.location.href='simply.html';">Ir a calcular solo de una ip</button>
+    <br>
+    <br>
+
+    <div>
+        <h2>Red Inicial</h2>
+        <input type="text" id="initial-ip" placeholder="IP/CIDR (e.g., 192.168.1.0/24)">
+        <button onclick="setInitialNetwork()">Establecer Red Inicial</button>
+    </div>
+
+    <div>
+        <h2>Añadir Subred</h2>
+        <input type="text" id="network-name" placeholder="Nombre de la red">
+        <input type="number" id="host-count" placeholder="Número de hosts">
+        PC asignado
+        <input type="checkbox" id="has-pc">
+        <br>
+        <input type="text" id="pc-name" placeholder="Nombre del PC">
+        <button onclick="addNetwork()">Añadir Red</button>
+    </div>
+
+    <div>
+        <h2>Añadir WANs</h2>
+        <input type="number" id="wan-count" placeholder="Número de WANs">
+        <button onclick="addWan()">Añadir WANs</button>
+    </div>
+
+    <!-- Formulario para agregar routers -->
+    <div>
+        <h2>Añadir Router</h2>
+        <input type="text" id="router-name" placeholder="Nombre del router">
+        <input type="number" id="router-connections" placeholder="Número de conexiones">
+        <button onclick="setRouterConnections()">Establecer Conexiones</button>
+    </div>
+
+    <div id="router-connections-form"></div>
+
+    <!-- Botón para generar la información del router -->
+    <button id="generate-router-info" style="display:none;" onclick="generateRouterInfo()">Generar información del router</button>
+
+    <!-- Área para mostrar la configuración de Packet Tracer -->
+    <div>
+        <h2>Configuración de Cisco Packet Tracer</h2>
+        <pre id="packet-tracer-output" style="white-space: pre-wrap;"></pre>
+    </div>
+    
+    <!-- Tabla para mostrar la información del router -->
+    <h2>Información del Router</h2>
+    <table id="router-info-table" style="display:none;">
+        <thead>
+            <tr>
+                <th>Dispositivo</th>
+                <th>Interfaz</th>
+                <th>IP</th>
+                <th>Máscara</th>
+                <th>Conecta con</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Subredes</h2>
+    <table id="subnet-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Hosts</th>
+                <th>IP Subred</th>
+                <th>Máscara</th>
+                <th>CIDR</th>
+                <th>Gateway</th>
+                <th>Broadcast</th>
+                <th>Rango</th>
+                <th>Desperdicio</th>
+                <th>Hosts Asignados</th>
+                <th>PC</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>PCs</h2>
+    <table id="pc-table">
+        <thead>
+            <tr>
+                <th>Dispositivo</th>
+                <th>Dirección IP</th>
+                <th>Máscara de Subred</th>
+                <th>Gateway por defecto</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <!-- Contenedor para el diagrama -->
+    <div id="diagram-container" style="display:none;">
+        <h2>Diagrama de Red</h2>
+        <img id="network-diagram" alt="Diagrama de Red" style="max-width: 100%; height: auto;">
+    </div>
+    <!-- Botón para generar la configuración de Packet Tracer -->
+    <button onclick="generatePacketTracerConfig()">Generar Configuración de Packet Tracer</button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="packetTracer.js"></script>
+</body>
+</html>
