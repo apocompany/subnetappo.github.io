@@ -1,153 +1,161 @@
-/* Reset básico para mayor consistencia entre navegadores */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* Variables CSS actualizadas para colores */
+:root {
+    --primary-color: #4A4A4A; /* Gris oscuro */
+    --secondary-color: #1F1F1F; /* Negro carbón */
+    --background-color: #121212; /* Gris oscuro */
+    --card-background: #1E1E1E; /* Gris más oscuro */
+    --text-color: #E0E0E0; /* Gris claro */
+    --border-color: #333333; /* Gris oscuro */
+    --hover-bg: #2D2D2D; /* Gris más oscuro */
+    --toast-bg: #1E1E1E; /* Gris más oscuro */
+    --toast-text: #E0E0E0; /* Gris claro */
+    --neon-color: #c2c2c2; /* Negro neón oscuro */
+    --neon-colors: #000000; /* Negro neón oscuro */
+
 }
 
+/* Estilos generales */
 body {
     font-family: 'Montserrat', sans-serif;
-    background: #f0f4f8;
-    color: #333;
-    padding: 40px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 5vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    animation: fadeIn 1s ease-in;
 }
 
 h1 {
     font-size: 2.8rem;
-    color: #1d4ed8;
-    margin-bottom: 40px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    color: var(--primary-color);
+    margin-bottom: 5vw;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
     font-size: 1.8rem;
-    color: #1d4ed8;
-    border-bottom: 2px solid #1d4ed8;
+    color: var(--neon-color);
+    border-bottom: 2px solid var(--neon-color);
     padding-bottom: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 2vw;
+    text-align: center;
+    text-shadow: 0 0 10px var(--neon-color), 0 0 20px var(--neon-color);
+}
+
+/* Contenedor de secciones de componentes en columnas */
+#components-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    justify-content: center;
+    margin-bottom: 4vw;
+}
+
+.component-section {
+    background: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 2vw;
+    margin: 1vw;
+    width: 300px;
     text-align: center;
 }
 
-div {
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin-bottom: 30px;
-    width: 100%;
-    max-width: 800px;
-    transition: all 0.3s ease;
+.component-section input {
+    margin-bottom: 1vw;
+    padding: 0.5vw;
+    width: calc(100% - 1vw);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--background-color);
+    color: var(--text-color);
 }
 
-div:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-}
-
-label {
-    display: block;
-    margin-top: 12px;
-    color: #555;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-input[type="text"], input[type="number"] {
-    padding: 12px;
-    margin-top: 8px;
-    width: calc(100% - 24px);
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-input[type="text"]:focus, input[type="number"]:focus {
-    border-color: #1d4ed8;
-    outline: none;
-}
-
-input[type="checkbox"] {
-    margin-top: 12px;
-    transform: scale(1.2);
-}
-
-button {
-    background-color: #1d4ed8;
-    color: #fff;
+.component-section button {
+    padding: 0.5vw 1vw;
     border: none;
-    border-radius: 8px;
-    padding: 12px;
-    margin-top: 15px;
+    border-radius: 4px;
+
+}
+
+.component-section button:hover {
+    background: var(--hover-bg);
+}
+
+/* Sección de información en la parte inferior */
+.info-section {
+    background: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 2vw;
+    margin-top: 2vw;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.info-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-section table th,
+.info-section table td {
+    padding: 0.5vw;
+    text-align: left;
+}
+
+.info-section table th {
+    background: var(--primary-color);
+    color: var(--text-color);
+}
+
+.info-section table td {
+    background: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.info-section table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Estilos generales para botones */
+button {
+    padding: 0.5vw 1vw;
+    border: 1px solid #c2c2c2; /* Bordes blancos neón */
+    border-radius: 4px;
+    background: #ffffff; /* Fondo blanco por defecto */
+    color: #000000; /* Texto negro por defecto */
+    cursor: pointer;
+    margin-top: 1vw;
     font-size: 1rem;
     font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Suaviza el cambio de color */
 }
 
 button:hover {
-    background-color: #1e40af;
-    transform: scale(1.05);
+    background: #000000; /* Fondo negro en hover */
+    color: #ffffff; /* Texto blanco en hover */
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    border-radius: 8px;
-    overflow: hidden;
-    table-layout: fixed; /* Ensure table takes full width but with consistent column widths */
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 12px;
-    text-align: center;
-}
-
-thead {
-    background-color: #1d4ed8;
-    color: #ffffff;
-    font-weight: 600;
-}
-
-tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #ffffff;
-}
-
-tbody tr:hover {
-    background-color: #f1f1f1;
+/* Estilos generales para el botón de guardar */
+.save-button {
+    background-color: #4A90E2; /* Azul claro */
+    color: #000000; /* Texto negro */
+    border: 1px solid #c2c2c2; /* Bordes blancos neón */
+    border-radius: 5px;
+    padding: 0.8vw 1vw;
     cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Suaviza el cambio de color */
 }
 
-/* Centro la tabla de información del router */
-#router-info-table {
-    display: none; /* Se muestra mediante JavaScript */
-    margin: 20px auto; /* Centra la tabla horizontalmente */
-    width: 90%;
-    max-width: 1000px;
+.save-button:hover {
+    background-color: #357ABD; /* Azul más oscuro */
+    color: #ffffff; /* Texto blanco en hover */
 }
 
-/* Estilo para el campo de nombre del PC que aparece solo si se marca la casilla */
-#pc-name {
-    display: none; /* Ocultamos el campo por defecto */
-    margin-top: 12px;
-}
-
-input[type="checkbox"]:checked ~ #pc-name {
-    display: block; /* Mostramos el campo si la casilla está marcada */
-}
 
 /* Animaciones y transiciones */
 @keyframes fadeIn {
@@ -159,25 +167,139 @@ input[type="checkbox"]:checked ~ #pc-name {
     }
 }
 
-body {
-    animation: fadeIn 1s ease-in;
+@keyframes fadeout {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
+
+
 /* Estilo para las indicaciones */
 #instructions {
-    background: #e3f2fd;
-    border-left: 5px solid #1d4ed8;
-    padding: 20px;
-    margin-bottom: 30px;
+    background: #2A2A2A; /* Gris más oscuro */
+    border-left: 5px solid var(--primary-color);
+    padding: 2vw;
+    margin-bottom: 4vw;
     width: 100%;
-    max-width: 800px;
+    max-width: 90vw;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #instructions ul {
     list-style-type: disc;
-    margin-left: 20px;
+    margin-left: 2vw;
 }
 
 #instructions li {
-    margin-bottom: 10px;
+    margin-bottom: 1vw;
     font-size: 1rem;
+}
+
+/* Contenedor del diagrama con separación clara */
+#diagram-container {
+    width: 100%;
+    height: 60vh; /* Altura adaptable */
+    margin-top: 4vw; /* Espacio para separar del contenido anterior */
+    background-color: rgba(0, 0, 0, 0.8); /* Ajusta el color de fondo para que sea oscuro y transparente si es necesario */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos generales para el formulario de conexiones de router */
+#router-connections-form {
+    background-color: #1E1E1E; /* Gris más oscuro */
+    color: var(--text-color);
+    padding: 2vw;
+    border-radius: 8px;
+}
+
+.connection-div {
+    margin-bottom: 1.5vw;
+    padding: 1vw;
+    background-color: #2A2A2A; /* Gris oscuro */
+    border-radius: 5px;
+}
+
+.connection-title {
+    font-size: 1.2rem;
+    color: #B0B0B0; /* Gris claro */
+    margin-bottom: 1vw;
+}
+
+.connection-select {
+    background-color: #3C3C3C; /* Gris oscuro */
+    color: var(--text-color);
+    border: 1px solid #4A4A4A; /* Gris oscuro */
+    border-radius: 4px;
+    padding: 0.5vw;
+    width: 100%;
+    margin-bottom: 1vw;
+}
+
+
+.save-button:hover {
+    background-color: #357ABD; /* Azul más oscuro */
+}
+
+/* Estilo para el campo de nombre del PC que aparece solo si se marca la casilla */
+#pc-options {
+    margin-top: 1vw;
+}
+
+#pc-name {
+    display: none; /* Ocultamos el campo por defecto */
+    margin-top: 1vw;
+}
+
+input[type="checkbox"]:checked ~ #pc-options #pc-name {
+    display: block; /* Mostramos el campo si la casilla está marcada */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    body {
+        padding: 3vw;
+    }
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 4vw;
+    }
+    h2 {
+        font-size: 1.6rem;
+        margin-bottom: 1.5vw;
+    }
+    #instructions, #router-info-table {
+        max-width: 100%;
+        padding: 3vw;
+    }
+    input[type="text"], input[type="number"], button, .save-button {
+        font-size: 0.9rem;
+    }
+    #diagram-container {
+        height: 50vh;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 2vw;
+    }
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 3vw;
+    }
+    h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1vw;
+    }
+    #instructions, #router-info-table {
+        max-width: 100%;
+        padding: 2vw;
+    }
+    input[type="text"], input[type="number"], button, .save-button {
+        font-size: 0.8rem;
+    }
+    #diagram-container {
+        height: 40vh;
+    }
 }
